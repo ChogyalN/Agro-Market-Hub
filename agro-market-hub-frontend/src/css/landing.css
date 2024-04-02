@@ -29,14 +29,14 @@
   z-index: 1;
 }
 
-.content h2 {
-  font-size: 36px;
+.service h3 {
+  font-size: 12px;
   margin-bottom: 20px;
 }
 
-.content p {
-  font-size: 18px;
-  margin-bottom: 20px;
+.service p {
+  font-size: 12px;
+  margin-bottom: 16px;
 }
 
 body {
@@ -103,17 +103,17 @@ body {
 .service {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   margin-bottom: 40px;
 }
-
 .service img {
-  width: 100px; /* Adjust size as needed */
+  width: 60px; /* Adjust size as needed */
   margin-right: 20px;
   margin-bottom: 10px;
 }
 .service h3 {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .service div {
@@ -121,7 +121,7 @@ body {
 }
 
 .service h3 {
-  font-size: 24px;
+  font-size: 18px;
   color: #333333;
   margin-bottom: 10px;
 }

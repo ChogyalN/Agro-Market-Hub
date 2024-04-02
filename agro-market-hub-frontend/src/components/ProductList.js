@@ -45,6 +45,7 @@ function ProductList() {
     setId(id);
     navigate(`/product`, { state: { id: id, update: update } });
   };
+
   return (
     <div className="product-table-container">
       <table className="product-table">
@@ -75,19 +76,12 @@ function ProductList() {
                 </button>
               </td>
               <td>
-                {/* <Link
-                  to={{
-                    pathname: "/product",
-                    state: { id: products[index].id, update: update },
-                  }}
-                > */}
                 <button
                   onClick={() => updateForm(products[index].id)}
                   id="edit-btn"
                 >
                   Update
                 </button>
-                {/* </Link> */}
               </td>
             </tr>
           ))}
