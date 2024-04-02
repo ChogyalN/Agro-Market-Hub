@@ -13,4 +13,8 @@ public interface FarmOwnerRequester {
 	FarmProductsDTO createProducts(FarmProductsDTO farmProductsDTO);
 
 	List<FarmProducts> getAllProducts();
+
+	void removeById(long id);
+
+	FarmProducts updateProduct(long id, FarmProductsDTO farmProductsDTO);
 }

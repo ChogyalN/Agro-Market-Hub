@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -7,20 +8,26 @@ function Header() {
       <header>
         <nav class="navbar">
           <div class="logo">
-            <h1>Your Logo</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbuBD3DF9Z7DsEFhGcx9hREKZZqyND8YSYgj4-wXS07A&s" />
           </div>
           <ul class="nav-links">
+            <Link to="landing">
+              <li>
+                <a href="">Home</a>
+              </li>
+            </Link>
+            <Link to="productList">
+              <li>
+                <a href="#">View Products</a>
+              </li>
+            </Link>
+            <Link to="product">
+              <li>
+                <a href="#">Add Product</a>
+              </li>
+            </Link>
             <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
+              <a href="#footer">Contact</a>
             </li>
           </ul>
         </nav>

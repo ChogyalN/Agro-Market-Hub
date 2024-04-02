@@ -3,6 +3,7 @@ package com.AgroMarketHub.dto;
 import java.util.Date;
 
 public class FarmProductsDTO {
+    private long id;
     private String productName;
     private String productDesc;
     private int quantity;
@@ -23,6 +24,22 @@ public class FarmProductsDTO {
         this.unit = unit;
         this.availableDate = availableDate;
         this.prodtStatus = prodtStatus;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getProductName() {

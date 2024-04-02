@@ -32,4 +32,14 @@ public class FarmOwnerController {
 		List<FarmProducts> all = farmOwnerRequester.getAllProducts();
 		return farmOwnerRequester.getAllProducts();
 	}
+
+	@DeleteMapping("deleteProductById/{id}")
+	private void deleteById(@PathVariable long id){
+		farmOwnerRequester.removeById(id);
+	}
+
+	@PutMapping("updateProducts/{id}")
+	private FarmProducts updateProduct(@PathVariable int id, @RequestBody FarmProductsDTO farmProductsDTO){
+		return farmOwnerRequester.updateProduct(id, farmProductsDTO);
+	}
 }

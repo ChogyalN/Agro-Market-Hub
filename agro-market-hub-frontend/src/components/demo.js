@@ -1,7 +1,7 @@
 import React from "react";
 
-function Login() {
+function Demo() {
   return <></>;
 }
 
-export default Login;
+export default Demo;

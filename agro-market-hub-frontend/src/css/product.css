@@ -9,10 +9,10 @@
     flex-wrap: wrap;
     margin-bottom: 15px;
 }
-
 .form-group {
     flex: 1;
     margin-right: 10px;
+    border: none;
 }
 
 label {
@@ -23,13 +23,22 @@ input[type="text"],
 input[type="number"],
 input[type="date"] {
     padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
     box-sizing: border-box;
     font-size: 12px;
     width: 100%;
 }
 
+input{
+    border: none;
+}
+
+#product-add{
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
 button {
     background-color: #007bff;
     color: #fff;
@@ -42,6 +51,44 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+#product-container{
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+.inputProduct-sidediv{
+    width: 50%;
+    height: 90vh;
+}
+.inputProduct-sidediv img{
+    width: 100%;
+    height: 60%;
+}
+.inputProduct-sidediv h3{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Brush Script MT', cursive;
+    font-weight: 100;
+}
+
+#product-content{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+}
+#product-content-form{
+    width: 50%;
+    height: auto;
+}
+
+#insertForm{
+    width: 50%;
+    height: auto;
+    padding: 30px;
+}
+
 
 /*--------------------------- Product List-------------------------------------*/
 
@@ -51,6 +98,7 @@ button:hover {
 
 .product-table {
     width: 100%;
+    /* height: 70vh; */
     border-collapse: collapse;
 }
 
@@ -59,6 +107,7 @@ button:hover {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+    font-size: 14px;
 }
 
 .product-table th {
@@ -73,4 +122,9 @@ button:hover {
 .product-table tbody tr:hover {
     background-color: #ddd;
 }
-
+#remove-btn{
+    background-color: #B30015;
+}
+#edit-btn{
+    background-color: #0CA719;
+}

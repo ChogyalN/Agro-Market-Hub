@@ -3,6 +3,7 @@ package com.AgroMarketHub.dto;
 import org.springframework.beans.factory.annotation.Value;
 
 public class FarmOwnerDTO {
+	private long id;
 	private String name;
 	private String location;
 	private String address;
@@ -98,4 +99,8 @@ public class FarmOwnerDTO {
 	public void setVillage(String village) {
 		this.village = village;
 	}
+
+    public Long getId() {
+		return id;
+    }
 }

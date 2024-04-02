@@ -70,4 +70,26 @@ public class FarmOwnerImpl implements FarmOwnerRequester {
 		List<FarmProducts> products= farmProductRepository.findAll();
 		return farmProductRepository.findAll();
 	}
+
+	@Override
+	public void removeById(long id) {
+		System.out.println("@@@ id = "+id);
+		farmProductRepository.deleteById(id);
+	}
+
+	@Override
+	public FarmProducts updateProduct(long id, FarmProductsDTO farmProductsDTO) {
+		FarmProducts updateFetchProduct = farmProductRepository.findById(id).orElse(null);
+		updateFetchProduct.setProductDesc(farmProductsDTO.getProduct_desc());
+		updateFetchProduct.setProductName(farmProductsDTO.getProductName());
+		updateFetchProduct.setQuantity(farmProductsDTO.getQuantity());
+		updateFetchProduct.setUnit(farmProductsDTO.getUnit());
+		updateFetchProduct.setUnitPrice(farmProductsDTO.getUnitPrice());
+		updateFetchProduct.setAvailableDate(farmProductsDTO.getAvailableDate());
+		updateFetchProduct.setProdtStatus(farmProductsDTO.getProdtStatus());
+
+		farmProductRepository.save(updateFetchProduct);
+		return updateFetchProduct;
+	}
+
 }
