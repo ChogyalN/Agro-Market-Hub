@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/header.css";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  // Function to handle mouse enter event
+  const handleMouseEnter = (item) => {
+    setHoveredItem(item);
+  };
+
+  // Function to handle mouse leave event
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
+  };
   return (
     <>
       <header>
@@ -16,6 +27,7 @@ function Header() {
                 <a href="">Home</a>
               </li>
             </Link>
+
             <Link to="productList">
               <li>
                 <a href="#">View Products</a>

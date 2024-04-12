@@ -1,9 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/footer.css";
+import axios from "axios";
 
 function Footer() {
+  const [mail, setMail] = useState(false);
+  const [formData, setFormData] = useState({
+    to: "",
+    subject: "",
+    context: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleMail = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/v1/mail", formData);
+      console.log("Response:", response.data);
+      // Reset form fields after successful submission
+      setFormData({
+        to: "",
+        subject: "",
+        context: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const mailSender = () => {
+    setMail(true);
+  };
   return (
     <>
+      {mail ? (
+        <div class="container">
+          <h2>Email Form</h2>
+          <form id="emailForm">
+            <div class="form-group">
+              <label for="to">To:</label>
+              <input
+                type="text"
+                id="to"
+                name="to"
+                onChange={handleChange}
+                placeholder="Recipient email address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject:</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                onChange={handleChange}
+                placeholder="Email subject"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="content">Content:</label>
+              <textarea
+                id="content"
+                name="content"
+                onChange={handleChange}
+                placeholder="Email content"
+                rows="12"
+                required
+              ></textarea>
+            </div>
+            <button
+              onClick={() => handleMail()}
+              type="submit"
+              value="Send Email"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      ) : (
+        <></>
+      )}
+
       <footer class="dark-footer" id="footer">
         <div class="footer-container">
           {/* <div class="footer-column">
@@ -33,6 +118,11 @@ function Footer() {
               </li>
               <li>
                 <a href="#">Contact</a>
+              </li>
+              <li>
+                <a onClick={() => mailSender()} href="#">
+                  Mail us
+                </a>
               </li>
             </ul>
           </div>

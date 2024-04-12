@@ -1,9 +1,11 @@
 package com.AgroMarketHub.controller;
 
 import com.AgroMarketHub.dto.FarmProductsDTO;
+import com.AgroMarketHub.dto.MailDTO;
 import com.AgroMarketHub.entity.FarmProducts;
 import com.AgroMarketHub.serviceRequester.FarmOwnerRequester;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.AgroMarketHub.dto.FarmOwnerDTO;
@@ -22,7 +24,7 @@ public class FarmOwnerController {
 		return farmOwnerRequester.createFarmowner(farmownerDTO);
 	}
 
-	@PostMapping("create_product")
+	@PostMapping(value = "create_product", produces = {MediaType.APPLICATION_JSON_VALUE})
 	private FarmProductsDTO createProduct(@RequestBody FarmProductsDTO farmProductsDTO){
 		return farmOwnerRequester.createProducts(farmProductsDTO);
 	}
@@ -38,8 +40,14 @@ public class FarmOwnerController {
 		farmOwnerRequester.removeById(id);
 	}
 
-	@PutMapping("updateProducts/{id}")
+	@PutMapping(value = "updateProducts/{id}", produces={MediaType.APPLICATION_JSON_VALUE})
 	private FarmProducts updateProduct(@PathVariable int id, @RequestBody FarmProductsDTO farmProductsDTO){
 		return farmOwnerRequester.updateProduct(id, farmProductsDTO);
 	}
+
+	@PostMapping("mail")
+	private void sendEmail(@RequestBody MailDTO mailDTO){
+		farmOwnerRequester.sendEmail(mailDTO.getTo(), mailDTO.getSubject(), mailDTO.getText());
+	}
 }
+

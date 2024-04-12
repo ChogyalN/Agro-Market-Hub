@@ -14,6 +14,8 @@ import ProductList from "./components/ProductList.js";
 import Layout from "./components/Layout.js";
 import Login from "./components/Login.js";
 import Landing from "./components/Landing.js";
+import DropDown from "./components/DropDown.js";
+import Chart from "./components/Chart.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +25,8 @@ const router = createBrowserRouter(
       <Route path="productList" element={<ProductList />} />
       <Route path="landing" element={<Landing />} />
       {/* <Route path="user/:userid" element={<User />} /> */}
+      <Route path="dropdown" element={<DropDown />} />
+      <Route path="chart" element={<Chart />} />
     </Route>
   )
 );

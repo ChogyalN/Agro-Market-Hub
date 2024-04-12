@@ -25,10 +25,6 @@ function Product(props) {
     availableDate: "",
   });
 
-  useEffect(() => {
-    console.log(console.log(update));
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({

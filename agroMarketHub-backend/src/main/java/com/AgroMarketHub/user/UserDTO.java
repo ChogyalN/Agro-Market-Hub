@@ -1,8 +1,14 @@
 package com.AgroMarketHub.user;
 
+import com.AgroMarketHub.entity.Role;
+
+import java.util.Set;
+
 public class UserDTO {
     private String userName;
     private String password;
+
+    private Set<String> roles;
 
     public UserDTO() {
     }
@@ -26,5 +32,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }

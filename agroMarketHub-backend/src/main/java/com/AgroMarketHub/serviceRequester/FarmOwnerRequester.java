@@ -17,4 +17,6 @@ public interface FarmOwnerRequester {
 	void removeById(long id);
 
 	FarmProducts updateProduct(long id, FarmProductsDTO farmProductsDTO);
+
+	void sendEmail(String to, String subject, String content);
 }

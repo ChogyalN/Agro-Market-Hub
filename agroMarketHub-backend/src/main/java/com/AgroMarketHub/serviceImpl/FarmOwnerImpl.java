@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.AgroMarketHub.dto.FarmOwnerDTO;
 import com.AgroMarketHub.entity.FarmOwner;
 import com.AgroMarketHub.repository.FarmOwnerRepository;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public class FarmOwnerImpl implements FarmOwnerRequester {
 
 	@Autowired
 	FarmProductRepository farmProductRepository;
+
+	@Autowired
+	JavaMailSender javaMailSender;
 		
 	@Override
 	public FarmOwnerDTO createFarmowner(FarmOwnerDTO farmOwnerDTO) {
@@ -90,6 +95,15 @@ public class FarmOwnerImpl implements FarmOwnerRequester {
 
 		farmProductRepository.save(updateFetchProduct);
 		return updateFetchProduct;
+	}
+
+	@Override
+	public void sendEmail(String to, String subject, String content) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(to);
+		message.setSubject(subject);
+		message.setText(content);
+		javaMailSender.send(message);
 	}
 
 }

@@ -91,6 +91,28 @@ button:hover {
 
 
 /*--------------------------- Product List-------------------------------------*/
+.dismiss-toggle{
+    position: absolute;
+    top:30%;
+    left: 34%;
+    /* display: none; */
+    width:70vh;
+    height: 40vh;
+    box-shadow: silver 1px ;
+    border-radius: 3%;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+}
+#dismiss-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.dismiss-btn{
+    margin-top: 25%;
+}
 
 .product-table-container {
     margin: 20px;

@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/landing.css";
+import PieChartComponent from "./pieChart.js";
 
 function Landing() {
   return (
@@ -103,6 +104,20 @@ function Landing() {
           </div>
         </div>
       </section>
+      <section class="beautiful-section">
+        <div class="content">
+          <h2>Welcome to Our Beautiful Section</h2>
+          <p>Discover the beauty around you.</p>
+          <a href="#" class="btn">
+            Explore
+          </a>
+        </div>
+      </section>
+      <h1>Pie Chart </h1>
+
+      <div class="pie-chart">
+        <PieChartComponent />
+      </div>
     </>
   );
 }

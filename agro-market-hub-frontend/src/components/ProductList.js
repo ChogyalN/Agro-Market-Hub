@@ -10,6 +10,8 @@ function ProductList() {
   const [id, setId] = useState(null);
   const navigate = useNavigate();
   const [update, setUpdated] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,15 +28,17 @@ function ProductList() {
     fetchProducts();
   }, []);
 
-  const deleteProduct = async (index) => {
+  const deleteProduct = async () => {
     try {
       const response = await axios.delete(
-        `/api/v1/deleteProductById/${products[index].id}`
+        `/api/v1/deleteProductById/${products[deleteIndex].id}`
       );
       setProducts((prevProducts) => {
         // Create a copy of the previous state array
         const updatedProducts = [...prevProducts];
-        updatedProducts.splice(index, 1);
+        updatedProducts.splice(deleteIndex, 1);
+        setDeleteIndex(0);
+        setToggle(false);
         return updatedProducts;
       });
     } catch (error) {
@@ -44,6 +48,11 @@ function ProductList() {
   const updateForm = (id) => {
     setId(id);
     navigate(`/product`, { state: { id: id, update: update } });
+  };
+
+  const dismissDialog = (index) => {
+    setToggle(!toggle);
+    setDeleteIndex(index);
   };
 
   return (
@@ -61,6 +70,22 @@ function ProductList() {
           </tr>
         </thead>
         <tbody>
+          {toggle ? (
+            <div className="dismiss-toggle">
+              <h5>Are you sure you want to remove this list?</h5>
+              <div id="dismiss-btn">
+                <button onClick={() => deleteProduct()} className="dismiss-btn">
+                  Yes
+                </button>
+                <button onClick={() => dismissDialog()} className="dismiss-btn">
+                  Close
+                </button>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+
           {products.map((product, index) => (
             <tr key={index}>
               <td>{product.productName}</td>
@@ -71,7 +96,10 @@ function ProductList() {
               <td>{product.availableDate}</td>
               <td>{product.status}</td>
               <td>
-                <button onClick={() => deleteProduct(index)} id="remove-btn">
+                <button
+                  onClick={(toggle) => dismissDialog(index)}
+                  id="remove-btn"
+                >
                   Remove
                 </button>
               </td>
