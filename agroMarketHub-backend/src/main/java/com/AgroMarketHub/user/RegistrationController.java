@@ -20,8 +20,8 @@ public class RegistrationController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/getUserRole/{id}")
-    private List<Object[]> getUserAndRole(@PathVariable Long id){
-        return userService.getUserWithRole(id);
-    }
+//    @GetMapping("/getUserRole/{id}")
+//    private List<Object[]> getUserAndRole(@PathVariable Long id){
+//        return userService.getUserWithRole(id);
+//    }
 }

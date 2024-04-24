@@ -1,9 +1,6 @@
 package com.AgroMarketHub.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -19,6 +16,9 @@ public class FarmProducts {
     private int unit;
     private Date availableDate;
     private String prodtStatus;
+
+    @ManyToOne
+    private FarmOwner owner;
 
     public FarmProducts(String productName, String productDesc, int quantity, float unitPrice, int unit, Date availableDate, String prodtStatus) {
         this.productName = productName;

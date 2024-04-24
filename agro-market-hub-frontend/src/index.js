@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   Route,
@@ -12,10 +11,10 @@ import {
 import Product from "./components/Product.js";
 import ProductList from "./components/ProductList.js";
 import Layout from "./components/Layout.js";
-import Login from "./components/Login.js";
 import Landing from "./components/Landing.js";
 import DropDown from "./components/DropDown.js";
 import Chart from "./components/Chart.js";
+import SignUp from "./components/SignUp.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +26,7 @@ const router = createBrowserRouter(
       {/* <Route path="user/:userid" element={<User />} /> */}
       <Route path="dropdown" element={<DropDown />} />
       <Route path="chart" element={<Chart />} />
+      <Route path="signup" element={<SignUp />} />
     </Route>
   )
 );

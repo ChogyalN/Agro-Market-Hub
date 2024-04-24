@@ -42,9 +42,9 @@ public class UserServiceImpl {
         return userRepository.findAll();
     }
 
-    public List<Object[]> getUserWithRole(Long id){
-        return userRepository.findUserAndRoleByUsername(findUserById(id).getUserName());
-    }
+//    public List<Object[]> getUserWithRole(Long id){
+//        return userRepository.findUserAndRoleByUsername(findUserById(id).getUserName());
+//    }
 
     public UserEntity findUserById(Long id){
         return userRepository.findById(id).orElse(null);

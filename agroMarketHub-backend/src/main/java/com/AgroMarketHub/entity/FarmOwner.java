@@ -8,33 +8,39 @@ import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "farm_owner")
 public class FarmOwner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String name;
+    private Integer id;
+    private String name;
     @Column(name = "location")
-    String location;
+    private String location;
 
     @Column(name = "address")
-    String address;
+    private String address;
 
     @Column(name = "farm_size")
-    String farmSize;
+    private String farmSize;
 
     @Column(name = "phone_no")
-    long phoneNumber;
+    private long phoneNumber;
     @Column(name = "dzongkhag")
-    String dzongkhag;
+    private String dzongkhag;
 
     @Column(name = "gewog")
-    String gewog;
+    private String gewog;
 
     @Column(name = "village")
-    String village;
+    private String village;
+
+    @OneToMany
+    @JoinColumn(name = "owner")
+    private List<FarmProducts> products;
 
     public FarmOwner(String name, String location, String address, String farmSize, long phoneNumber, String dzongkhag, String gewog, String village) {
         this.name = name;
@@ -46,6 +52,9 @@ public class FarmOwner {
         this.gewog = gewog;
         this.village = village;
     }
+
+    public FarmOwner() {}
+
     public int getId(){
         return id;
     }
@@ -111,5 +120,13 @@ public class FarmOwner {
 
     public void setVillage(String village) {
         this.village = village;
+    }
+
+    public List<FarmProducts> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<FarmProducts> products) {
+        this.products = products;
     }
 }
