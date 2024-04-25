@@ -72,22 +72,23 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
                   required
                   fullWidth
-                  id="firstName"
+                  name="firstName"
                   label="First Name"
-                  autoFocus
+                  type="password"
+                  id="password"
+                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
                   name="lastName"
+                  label="Last Name"
+                  type="password"
+                  id="password"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -95,9 +96,10 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
                   name="email"
+                  label="Email"
+                  type="email"
+                  id="email"
                   autoComplete="email"
                 />
               </Grid>
@@ -138,7 +140,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );
