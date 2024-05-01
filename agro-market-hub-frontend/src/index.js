@@ -15,6 +15,10 @@ import Landing from "./components/Landing.js";
 import DropDown from "./components/DropDown.js";
 import Chart from "./components/Chart.js";
 import SignUp from "./components/SignUp.js";
+import CustomizedTables from "./components/MUI/CustomizedTables.js";
+import OutlinedAlerts from "./components/MUI/OutlinedAlerts.js";
+import Dialog from "./components/MUI/Dialog.js";
+import Login from "./components/Login.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +31,10 @@ const router = createBrowserRouter(
       <Route path="dropdown" element={<DropDown />} />
       <Route path="chart" element={<Chart />} />
       <Route path="signup" element={<SignUp />} />
+      <Route path="table" element={<CustomizedTables />} />
+      <Route path="alert" element={<OutlinedAlerts />} />
+      <Route path="dialog" element={<Dialog />} />
+      <Route path="login" element={<Login />} />
     </Route>
   )
 );

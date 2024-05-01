@@ -41,6 +41,16 @@ function Header() {
             <li>
               <a href="#footer">Contact</a>
             </li>
+            <Link to="table">
+              <li>
+                <a href="#">Table</a>
+              </li>
+            </Link>
+            <Link to="signup">
+              <li>
+                <a href="#">Sign Up</a>
+              </li>
+            </Link>
           </ul>
         </nav>
       </header>

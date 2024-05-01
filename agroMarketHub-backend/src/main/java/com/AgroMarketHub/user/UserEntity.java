@@ -1,10 +1,12 @@
 package com.AgroMarketHub.user;
 
+import com.AgroMarketHub.entity.DocsEntity;
 import com.AgroMarketHub.entity.Role;
 import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,22 +16,24 @@ public class UserEntity {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
+    private String firstName;
+    private String lastName;
     private String password;
+    private String userName;
+    private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "user")
+    private List<DocsEntity> docsEntities;
 
     public UserEntity() {}
-
-    public UserEntity(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
 
     public Long getId() {
         return id;
@@ -58,4 +62,36 @@ public class UserEntity {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+    public String getFirstName() {
+  		return firstName;
+  	}
+
+  	public void setFirstName(String firstName) {
+  		this.firstName = firstName;
+  	}
+
+  	public String getLastName() {
+  		return lastName;
+  	}
+
+  	public void setLastName(String lastName) {
+  		this.lastName = lastName;
+  	}
+
+  	public String getEmail() {
+  		return email;
+  	}
+
+  	public void setEmail(String email) {
+  		this.email = email;
+  	}
+
+	public List<DocsEntity> getDocsEntity() {
+		return docsEntities;
+	}
+
+	public void setDocsEntity(List<DocsEntity> docsEntity) {
+		this.docsEntities = docsEntity;
+	}
+  	
 }

@@ -2,28 +2,73 @@ package com.AgroMarketHub.user;
 
 import com.AgroMarketHub.entity.Role;
 
+import java.util.List;
 import java.util.Set;
 
 public class UserDTO {
+	private String firstName;
+	private String lastName;
+	private String email;
     private String userName;
     private String password;
-
-    private Set<String> roles;
+    
+    private List<String> roles;
 
     public UserDTO() {
     }
 
-    public UserDTO(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
+    
+    public UserDTO(String firstName, String lastName, String email, String password,
+			Set<String> roles) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getFisrtName() {
+		return this.firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+    public String getUserName(String firstName, String lastName) {
+        return this.userName = firstName.trim().concat(Character.toString(lastName.charAt(0)).toUpperCase());
     }
 
     public String getPassword() {
@@ -34,11 +79,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public Set<String> getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 }
