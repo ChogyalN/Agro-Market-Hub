@@ -19,7 +19,7 @@ public class UserDTO {
 
     
     public UserDTO(String firstName, String lastName, String email, String password,
-			Set<String> roles) {
+			List<String> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

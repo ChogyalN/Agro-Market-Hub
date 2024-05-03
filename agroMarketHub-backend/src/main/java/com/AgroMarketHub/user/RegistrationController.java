@@ -6,16 +6,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.AgroMarketHub.dto.AuthRequestDTO;
 import com.AgroMarketHub.entity.DocsEntity;
+import com.AgroMarketHub.serviceImpl.JwtServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class RegistrationController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
+    
+    @Autowired
+    private JwtServiceImpl jwtServiceImpl;
     
     
     @PostMapping("/register")
@@ -27,6 +33,15 @@ public class RegistrationController {
     private List<UserEntity> getAllUsers(){
         return userService.getAllUsers();
     }
+    
+    @PostMapping("/auth")
+    private String authenticateWithToke(@RequestBody AuthRequestDTO authDTO) throws Exception {
+    	if(userService.getUserFromUsernameAndPass(authDTO) != null) {
+        	return jwtServiceImpl.generateToke(authDTO.getUserName());
+    	}
+    	return "Incorrect credentials";
+    } 
+    
 
     @PostMapping("/upload/{username}")
     private ResponseEntity<DocsEntity> uploadFiles(@RequestParam("file") MultipartFile file, @PathVariable String username) throws IOException {
@@ -35,5 +50,12 @@ public class RegistrationController {
         	return ResponseEntity.status(HttpStatus.OK).body(docs);
     	}
     	return (ResponseEntity<DocsEntity>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    
+    
+    @DeleteMapping("/delete-docs/{id}")
+    private String deleteDocs(@PathVariable long id){
+    	userService.deleteDocs(id);
+    	return "successful";
     }
 }

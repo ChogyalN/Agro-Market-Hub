@@ -72,6 +72,10 @@ public class UserServiceImpl {
     	return docsRepository.save(doc);
     }
     
+    public void deleteDocs(long id) {
+    	docsRepository.deleteById(id);
+    }
+    
     public List<UserEntity> getAllUsers(){
     	return userRepository.findAll();
     }
@@ -96,4 +100,28 @@ public class UserServiceImpl {
         System.out.println(fetchedPassword);
         return hashedPasswordEntered.equals(fetchedPassword);
     }
+    
+    public UserEntity getUserFromUsernameAndPass(AuthRequestDTO auth) throws Exception {
+    	UserEntity currentUser = userRepository.findByUserName(auth.getUserName());
+    	if(currentUser != null) {
+    		if(!comparePassword(auth.getPassword(), currentUser)) {
+        		return null;
+        	}
+    	}else {
+    		throw new Exception("User not found");
+    	}
+    	
+    	return currentUser;
+    }
+
+	private boolean comparePassword(String password, UserEntity cur_user) {
+		// TODO Auto-generated method stub
+		String hashedPass = passwordEncoder(password);
+		System.out.println("@@@ DB ----- "+ cur_user.getPassword());
+		System.out.println("@@@ Login ----- "+ hashedPass);
+		if(hashedPass.equals(cur_user.getPassword())) {
+			return true;
+		}
+		return false;
+	}
 }

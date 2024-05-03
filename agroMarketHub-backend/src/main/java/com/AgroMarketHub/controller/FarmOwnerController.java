@@ -13,7 +13,7 @@ import com.AgroMarketHub.dto.FarmOwnerDTO;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/")
 public class FarmOwnerController {
 	
 	@Autowired
