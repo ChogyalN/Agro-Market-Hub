@@ -19,7 +19,7 @@ public class JwtServiceImpl {
 
 	@Value("${jwt.secret}")
 	private String SECRET;
-
+	
 	public String generateToke(String userName) {
 		Map<String, Object> claims = new HashMap<>();
 		return createToken(claims, userName);
