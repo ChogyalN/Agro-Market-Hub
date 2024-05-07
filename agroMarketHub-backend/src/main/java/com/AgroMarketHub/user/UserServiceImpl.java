@@ -2,6 +2,7 @@ package com.AgroMarketHub.user;
 
 import com.AgroMarketHub.classes.GenerateFileUrl;
 import com.AgroMarketHub.dto.AuthRequestDTO;
+import com.AgroMarketHub.dto.ObjectResponseDTO;
 import com.AgroMarketHub.entity.DocsEntity;
 import com.AgroMarketHub.entity.Role;
 import com.AgroMarketHub.repository.DocsRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,21 +47,22 @@ public class UserServiceImpl {
     	user.setEmail(userDTO.getEmail());
     	user.setUserName(userDTO.getUserName(userDTO.getFirstName(), userDTO.getLastName()));
     	user.setPassword(passwordEncoder(userDTO.getPassword()));
-    	
-    	if(userDTO.getRoles() != null) {
-        	Set<Role> roles = new HashSet<Role>();
 
-    		for(String roleName : userDTO.getRoles()) {
-        		Role role = roleRepository.findByName(userDTO.getUserName(userDTO.getFirstName(), userDTO.getLastName()));
-        		if(role != null) {
-        			roles.add(role);
-        		}
-        	}
-        	user.setRoles(roles);
+    	Set<Role> rolesToAdd = new HashSet<>();
+    	for(Role roles : userDTO.getRoles()) {
+    		Role role = roleRepository.findByName(roles.getName());
+    		
+    		if(role == null) {
+    			role = new Role();
+    			role.setName(roles.getName());
+    			role = roleRepository.save(role);
+    		}
+    		rolesToAdd.add(role);
     	}
-    
+    	user.setRoles(rolesToAdd);
     	return userRepository.save(user);
     }
+    
     
     public DocsEntity uploadFiles(MultipartFile file, String userName) throws IOException {
     	String filePath = generateFileUrl.generateURL(file);
@@ -72,34 +75,57 @@ public class UserServiceImpl {
     	return docsRepository.save(doc);
     }
     
+    
     public void deleteDocs(long id) {
     	docsRepository.deleteById(id);
     }
     
-    public List<UserEntity> getAllUsers(){
-    	return userRepository.findAll();
+    
+    public List<ObjectResponseDTO> getAllUsers(){
+    	List<UserEntity> users = userRepository.findAll();
+    	List<ObjectResponseDTO> responseObj = new ArrayList<>();
+    	ObjectResponseDTO response = new ObjectResponseDTO();
+    	for(UserEntity user : users) {
+    		response.setId(user.getId());
+    		response.setFirstName(user.getFirstName());
+    		response.setLastName(user.getLastName());
+    		response.setEmail(user.getEmail());
+    		response.setUserName(user.getUserName());
+    		
+    		responseObj.add(response);
+    	}
+    	return responseObj;
     }
     
 
     public UserEntity findUserById(Long id){
         return userRepository.findById(id).orElse(null);
     }
+    
+    public void deleteAllUsers() {
+    	userRepository.deleteAll();
+    }
 
+    public void deleteUserById(long id) {
+    	userRepository.deleteById(id);
+    }
+    
     public UserEntity getUserFromToken(String username){
     	UserEntity user = userRepository.findByUserName(username);
         return userRepository.findByUserName(username);
     }
 
+    
     public String passwordEncoder(String password){
         return DigestUtils.sha256Hex(password);
     }
 
-    private boolean comparePassword(String password, String fetchedPassword){
-        String hashedPasswordEntered = passwordEncoder(password);
-        System.out.println(hashedPasswordEntered);
-        System.out.println(fetchedPassword);
-        return hashedPasswordEntered.equals(fetchedPassword);
-    }
+//    private boolean comparePassword(String password, String fetchedPassword){
+//        String hashedPasswordEntered = passwordEncoder(password);
+//        System.out.println(hashedPasswordEntered);
+//        System.out.println(fetchedPassword);
+//        return hashedPasswordEntered.equals(fetchedPassword);
+//    }
     
     public UserEntity getUserFromUsernameAndPass(AuthRequestDTO auth) throws Exception {
     	UserEntity currentUser = userRepository.findByUserName(auth.getUserName());
@@ -123,5 +149,10 @@ public class UserServiceImpl {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getDocsUserPhoto(Long id) {
+		
+		return null;
 	}
 }

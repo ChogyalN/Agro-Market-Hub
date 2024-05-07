@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.AgroMarketHub.dto.AuthRequestDTO;
 import com.AgroMarketHub.dto.AuthResponseDTO;
+import com.AgroMarketHub.dto.ObjectResponseDTO;
 import com.AgroMarketHub.entity.DocsEntity;
 import com.AgroMarketHub.serviceImpl.JwtServiceImpl;
 
@@ -30,7 +31,7 @@ public class RegistrationController {
 	}
 
 	@GetMapping("/getUsers")
-	private List<UserEntity> getAllUsers() {
+	private List<ObjectResponseDTO> getAllUsers() {
 		return userService.getAllUsers();
 	}
 
@@ -62,5 +63,19 @@ public class RegistrationController {
 	private String deleteDocs(@PathVariable long id) {
 		userService.deleteDocs(id);
 		return "successful";
+	}
+	
+	private String getDocsUserPhoto(Long id) {
+		return null;
+	}
+	
+	@DeleteMapping("/deleteUserId/{id}")
+	private void deleteUserById(@PathVariable long id) {
+		userService.deleteUserById(id);
+	}
+	
+	@DeleteMapping("/deleteAllUsers")
+	private void deleteAllUsers() {
+		userService.deleteAllUsers();
 	}
 }

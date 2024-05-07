@@ -20,6 +20,7 @@ import OutlinedAlerts from "./components/MUI/OutlinedAlerts.js";
 import Dialog from "./components/MUI/Dialog.js";
 import Login from "./components/Login.js";
 import CookieTry from "./components/MUI/CookieTry.js";
+import Profile from "./components/Profile.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       <Route path="dialog" element={<Dialog />} />
       <Route path="login" element={<Login />} />
       <Route path="cookies" element={<CookieTry />} />
+      <Route path="profile" element={<Profile />} />
     </Route>
   )
 );

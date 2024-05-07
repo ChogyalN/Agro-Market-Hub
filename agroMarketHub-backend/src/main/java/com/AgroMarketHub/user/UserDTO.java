@@ -12,14 +12,14 @@ public class UserDTO {
     private String userName;
     private String password;
     
-    private List<String> roles;
+    private Set<Role> roles;
 
     public UserDTO() {
     }
 
     
     public UserDTO(String firstName, String lastName, String email, String password,
-			List<String> roles) {
+			Set<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -79,11 +79,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public List<String> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 }

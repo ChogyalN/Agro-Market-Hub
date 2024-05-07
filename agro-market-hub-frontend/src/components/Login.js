@@ -69,7 +69,7 @@ function Login() {
         setCookie("role", response.data.role, {
           expires: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000),
         });
-        window.location.href = "/landing";
+        window.location.href = "/profile";
       } else {
         console.log("The error message says ", response.data.Error);
       }
