@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/system";
 import { Container, Paper, Grid, Avatar, IconButton } from "@mui/material";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import axios from "axios";
 
 const RootContainer = styled(Container)(({ theme }) => ({
   marginTop: theme.spacing(4),
@@ -20,18 +21,20 @@ const AvatarImage = styled(Avatar)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
-const DetailsContainer = styled("div")(({ theme }) => ({
-  padding: theme.spacing(2),
-}));
+const uploadDP = () => {
+  // Logic for uploading profile picture
+};
 
 const Profile = () => {
+
+    
   return (
     <RootContainer>
-      <Paper elevation={3}>
+      <Paper elevation={10}>
         <ImageContainer>
-          <AvatarImage alt="User Avatar" src="/path/to/image.jpg" />
+          <img src="D:\file_upload\2024\May\7\image1.jpeg" alt="Image display" />
         </ImageContainer>
-        <DetailsContainer>
+        {/* <DetailsContainer> */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <IconButton color="primary">
@@ -52,7 +55,7 @@ const Profile = () => {
               </p>
             </Grid>
           </Grid>
-        </DetailsContainer>
+        {/* </DetailsContainer> */}
       </Paper>
       <Grid container spacing={2} style={{ marginTop: "2rem" }}>
         <Grid item xs={1}></Grid>

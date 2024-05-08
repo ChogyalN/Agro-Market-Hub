@@ -42,8 +42,10 @@ public class RegistrationController {
     	    String token = jwtServiceImpl.generateToke(authDTO.getUserName());
     		
     		AuthResponseDTO authResponse = new AuthResponseDTO();
+    		String userName = jwtServiceImpl.extractUsername(token);
     		authResponse.setToken(token);
-    		authResponse.setUserName(jwtServiceImpl.extractUsername(token));
+    		authResponse.setUserName(userName);
+    		authResponse.setId(userService.getUserFromToken(userName).getId());
         	return authResponse;
     	}
     	return null;
@@ -77,5 +79,15 @@ public class RegistrationController {
 	@DeleteMapping("/deleteAllUsers")
 	private void deleteAllUsers() {
 		userService.deleteAllUsers();
+	}
+	
+	@PostMapping("/uploadUserImage/{userName}")
+	private ObjectResponseDTO uploadUserImage(@RequestParam("image") MultipartFile file, @PathVariable String userName) throws IOException {
+		return userService.uploadUserImage(file, userName);
+	}
+	
+	@GetMapping("/fetchImagesById/{id}")
+	private List<String> fetchUserImagesByUserId(@PathVariable long id){
+		return userService.fetchUserImagesByUserId(id);
 	}
 }

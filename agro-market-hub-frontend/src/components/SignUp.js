@@ -177,7 +177,7 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="confirmPassword" 
+                  name="confirmPassword"
                   label="Retype Password"
                   type="password"
                   id="password"

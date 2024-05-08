@@ -4,6 +4,7 @@ public class AuthResponseDTO {
 	
 	private String userName;
 	private String token;
+	private long id;
 	
 	public AuthResponseDTO() {
 		super();
@@ -23,6 +24,15 @@ public class AuthResponseDTO {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	@Override

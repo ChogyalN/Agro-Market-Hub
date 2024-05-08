@@ -8,8 +8,17 @@ public class ObjectResponseDTO {
 	private String lastName;
 	private String email;
 	private String userName;
+	private String fileURL;
 	
 	
+	public String getFileURL() {
+		return fileURL;
+	}
+
+	public void setFileURL(String fileURL) {
+		this.fileURL = fileURL;
+	}
+
 	public ObjectResponseDTO() {
 		super();
 	}

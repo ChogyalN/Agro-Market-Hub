@@ -36,7 +36,7 @@ function Login() {
   const [cookies, setCookie, removeCookie] = useCookies([
     "user",
     "token",
-    "role",
+    "id",
   ]);
   const [formData, setFormData] = useState({
     userName: "",
@@ -66,7 +66,7 @@ function Login() {
         setCookie("token", response.data.token, {
           expires: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000),
         });
-        setCookie("role", response.data.role, {
+        setCookie("id", response.data.id, {
           expires: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000),
         });
         window.location.href = "/profile";

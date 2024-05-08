@@ -2,6 +2,8 @@ package com.AgroMarketHub.user;
 
 import com.AgroMarketHub.entity.DocsEntity;
 import com.AgroMarketHub.entity.Role;
+import com.AgroMarketHub.entity.UserImages;
+
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -25,6 +27,8 @@ public class UserEntity {
     
     private String email;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserImages> userImages;
 
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
