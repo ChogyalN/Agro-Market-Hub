@@ -52,13 +52,13 @@ public class RegistrationController {
     }
 
 	@PostMapping("/upload/{username}")
-	private ResponseEntity<DocsEntity> uploadFiles(@RequestParam("file") MultipartFile file,
+	private ResponseEntity<ObjectResponseDTO> uploadFiles(@RequestParam("file") MultipartFile file,
 			@PathVariable String username) throws IOException {
-		DocsEntity docs = userService.uploadFiles(file, username);
+		ObjectResponseDTO docs = userService.uploadFiles(file, username);
 		if (docs != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(docs);
 		}
-		return (ResponseEntity<DocsEntity>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+		return (ResponseEntity<ObjectResponseDTO>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@DeleteMapping("/delete-docs/{id}")

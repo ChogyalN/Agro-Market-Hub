@@ -140,7 +140,7 @@ public class UserServiceImpl {
 		return null;
 	}
 
-	public DocsEntity uploadFiles(MultipartFile file, String userName) throws IOException {
+	public ObjectResponseDTO uploadFiles(MultipartFile file, String userName) throws IOException {
 		String filePath = generateFileUrl.generateURL(file);
 		DocsEntity doc = new DocsEntity();
 		FileCopyUtils.copy(file.getBytes(), new File(filePath));
@@ -148,7 +148,13 @@ public class UserServiceImpl {
 		UserEntity user = getUserFromToken(userName);
 		doc.setUrl(filePath);
 		doc.setUser(getUserFromToken(userName));
-		return docsRepository.save(doc);
+		if(docsRepository.save(doc) != null){
+			ObjectResponseDTO response = new ObjectResponseDTO();
+			response.setFileURL(filePath);
+			response.setUserName(userName);
+			return response;
+		}
+		return null;
 	}
 
 	public ObjectResponseDTO uploadUserImage(MultipartFile file, String userName) throws IOException {
